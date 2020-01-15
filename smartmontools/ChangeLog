@@ -1,5 +1,129 @@
 $Id$
 
+2020-01-11  Christian Franke  <franke@computer.org>
+
+	dev_jmb39x_raid.cpp: Add '-d jmb39x-q,...' device type for JMB39x
+	protocol variant used by QNAP-TR004 NAS (#1283).
+	dev_interface.cpp: Update help text.
+	smartctl.8.in, smartd.conf.5.in: Document '-q' suffix.
+
+2020-01-02  Christian Franke  <franke@computer.org>
+
+	configure.ac: Use 'uname -n' if 'hostname' is not available
+	(GH PR 44).  Remove check for SVN < 1.7.
+
+2020-01-01  Christian Franke  <franke@computer.org>
+
+	Happy New Year!  Update copyright year in version info.
+
+2019-12-30  Christian Franke  <franke@computer.org>
+
+	smartmontools 7.1
+
+2019-12-29  Christian Franke  <franke@computer.org>
+
+	smartctl.8.in: Add info about AMD Windows RAID driver.
+	Fix some font changes.
+
+	os_win32/installer.nsi: Delete old ChangeLog-5.0-6.0 on update
+	installs.  Remove outdated delete commands.
+
+	scsicmds.cpp: Remove never needed include of atacmds.h.
+
+	ataprint.cpp, smartd.cpp: Silence 'multiplication overflow' warning
+	from lgtm.
+
+	ataprint.cpp: Fix size of Device Statistics value.
+
+	os_win32.cpp: CSMI: Detect missing ATA output registers.
+
+2019-12-28  Christian Franke  <franke@computer.org>
+
+	drivedb.h:
+	- Crucial/Micron MX500 SSDs: New entry to handle bogus
+	  attribute 197 (#1227)
+	- Phison Driven SSDs: Kingston DC450R (#1249),
+	  Patriot Flare, Blast, Blaze (#830), Burst (#1182)
+	- Silicon Motion based SSDs: Patriot P200, TC-Sunbow X3 (#1261),
+	  Team Group L5Lite 3D T253TD variant
+	- Seagate IronWolf: ST6000VN0033 (#1273)
+	- Western Digital Red: WD60EFAX (#1274)
+	- USB: Samsung (0x04e8:0x8003)
+	- USB: JMicron JMS561 (0x152d:0xa561)
+
+	do_release: Update code signing key id.
+
+2019-12-13  Christian Franke  <franke@computer.org>
+
+	smartd.conf.5.in: Fix very old comment about man2html bug.
+
+	smartctl.8.in, smartd.conf.5.in, update-smart-drivedb.8.in:
+	Remove EXPERIMENTAL notes for features added before 6.6.
+	Fix typos.
+
+	update-smart-drivedb.in: If signature verification fails, always
+	print GPG error message regardless of '-v' option.
+
+	os_win32.cpp: Decode Windows 10 1909 and Server 1909 build number.
+	Fix IRST version in comment.
+
+2019-12-10  Alex Samorukov <samm@os2.kiev.ua>
+
+	drivedb.h: Fix SanDisk SSD Plus matching pattern (GH PR 43)
+
+2019-12-06  Christian Franke  <franke@computer.org>
+
+	drivedb.h:
+	- Hitachi Ultrastar A7K1000: HITACHI* variant (#1255)
+	- Seagate IronWolf: *0008 variant (#1262)
+	- WD Blue and Green SSDs: *2G* variant, allow extra space
+	- USB: Unknown (0x0850:0x0031)
+	- USB: ADATA (0x125f:0xa37a) (#1264)
+
+2019-12-06  Alex Samorukov <samm@os2.kiev.ua>
+
+	drivedb.h:
+	- Extend Micron 5100 attributes (#1270)
+
+2019-12-05  Alex Samorukov <samm@os2.kiev.ua>
+
+	drivedb.h:
+	- Add Toshiba MQ04UBD200 (#1106)
+	- Add LITEON LCH SSD (#1124)
+
+2019-12-04  Alex Samorukov <samm@os2.kiev.ua>
+
+	drivedb.h:
+	- hynix SC311 SSD (#1267)
+	- Seagate Mobile HDD (#1118)
+	- Kingston SSDNow UV400 (#848, GH: 7)
+	- Add another PM841 definition (GH: 30)
+	- Add Seagate Barracuda Pro Compute family
+	- Extend WD Blue regexp
+	- Extend Seagate Mobile HDD regexp
+	- Add Seagate Exos X14
+
+2019-11-24  Christian Franke  <franke@computer.org>
+
+	Add '-d jmb39x,N[,sLBA][,force][+TYPE]' device type for SATA drives
+	behind a JMicron JMB39x RAID port multiplier (#705).
+	dev_jmb39x_raid.cpp: New file, based on JMraidcon by Werner Johansson.
+	dev_interface.cpp: Parse '-d jmb39x*[+TYPE]' option.
+	dev_interface.h: Add get_jmb39x_device().
+	smartctl.8.in, smartd.conf.5.in: Document new option.
+	Makefile.am, os_win32/vc14/smart*.vcxproj*: Add new file.
+
+	Thanks to Karl McMurdo for providing access to a machine for testing.
+
+2019-11-22  Christian Franke  <franke@computer.org>
+
+	atacmds.cpp: Fix bogus errno message in debug output.
+	Print original IDENTIFY DEVICE error if IDENTIFY PACKET DEVICE
+	also fails.
+
+	cciss.cpp: Fix segfault on transfer size > 512 bytes.
+	Replace printf() and fprintf() with pout().
+
 2019-10-19  Christian Franke  <franke@computer.org>
 
 	scsiprint.cpp: Silence 'value never read' warning from clang
